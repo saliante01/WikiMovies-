@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -22,8 +21,14 @@ public class Main {
 
         switch (respuesta){
             case 1:
-                if (revisarUsuario()){
-                    menuUsuarios();
+                System.out.println("Ingrese su usuario");
+                String usuario = teclado.next();
+
+                System.out.println("Ingrese su contrasena");
+                String password = teclado.next();
+
+                if (revisarUsuario(usuario, password)){
+                    menuUsuarios(usuario);
                 }
                 else{
                     System.out.println("Usuario no encontrado, reintente");
@@ -66,15 +71,8 @@ public class Main {
 
     }
 
-    private static boolean revisarUsuario() {
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Ingrese su usuario");
-        String userName = teclado.next();
-
-        System.out.println("Ingrese su contrasena");
-        String password = teclado.next();
-
-
+    private static boolean revisarUsuario(String usuario, String password) {
+        //for i en lista de usuarios si hay una coincidencia de usuario y password en el array, retorna un true, si no un false
         return false;
     }
 
@@ -86,18 +84,21 @@ public class Main {
         System.out.println("[2] Buscar una pelicula segun un parametro (genero, año, duracion, idioma)");
         System.out.println("[3] Recomendacion aleatoria");
         System.out.println("[0] Salir");
-        String respuesta = teclado.next();
+        int respuesta = teclado.nextInt();
 
         switch (respuesta){
-            case "1":
+            case 1:
+                //mostrarPeliculas();
                 break;
-            case "2":
+            case 2:
+                //busquedaPeliculas();
                 break;
-            case "3":
+            case 3:
+                //recomendacionAleatoria();
                 break;
-            case "4":
+            case 4:
                 break;
-            case "0": System.exit(0);
+            case 0: System.exit(0);
                 break;
             default:
                 System.out.println("Ingrese una opcion valida");
@@ -107,7 +108,7 @@ public class Main {
         menuAnonimo();
     }
 
-    private static void menuUsuarios(){
+    private static void menuUsuarios(String usuario){
         Scanner teclado = new Scanner(System.in);
         System.out.println("MENU");
         System.out.println("Que desea realizar? Ingrese el numero correspondiente");
@@ -115,26 +116,34 @@ public class Main {
         System.out.println("[2] Buscar una pelicula segun un parametro (genero, año, duracion, idioma)");
         System.out.println("[3] Recomendacion aleatoria");
         System.out.println("[4] Añadir pelicula");
+        System.out.println("[5] Ver peliculas Favoritas");
         System.out.println("[0] Salir");
-        String respuesta = teclado.next();
+        int respuesta = teclado.nextInt();
 
         switch (respuesta){
-            case "1":
+            case 1:
+                //mostrarPeliculas();
                 break;
-            case "2":
+            case 2:
+                //busquedaPeliculas();
                 break;
-            case "3":
+            case 3:
+                //recomendacionAleatoria();
                 break;
-            case "4":
+            case 4:
+                //anadirPelicula();
                 break;
-            case "0": System.exit(0);
+            case 5:
+                //peliculasFavoritas(usuario);
+                break;
+            case 0: System.exit(0);
                 break;
             default:
                 System.out.println("Ingrese una opcion valida");
-                menuUsuarios();
+                menuUsuarios(usuario);
                 break;
         }
-        menuUsuarios();
+        menuUsuarios(usuario);
     }
 }
 
