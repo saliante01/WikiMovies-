@@ -1,9 +1,9 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario implements Serializable{
+public class Usuario{
     private String username;
     private String password;
+
     private ArrayList<String> favoritos = new ArrayList<>();
 
     public Usuario(String username, String password) {
@@ -30,4 +30,14 @@ public class Usuario implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setFavoritos(ArrayList<String> favoritos) {
+        this.favoritos = favoritos;
+    }
+
+    public String toString(){
+        String datos = "[Usuario: "+this.getUsername()+", Contrasena: "+this.getPassword()+"]";
+        return datos;
+    }
+
 }

@@ -1,6 +1,11 @@
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class peliculas {
+public class Pelicula {
     private String titulo;
     private int year;
     private ArrayList<String> genero = new ArrayList<>();
@@ -9,7 +14,7 @@ public class peliculas {
     private String idioma;
 
 
-    public peliculas(String titulo, int year, String director, int duracion, String idioma) {
+    public Pelicula(String titulo, int year, String director, int duracion, String idioma) {
         this.titulo = titulo;
         this.year = year;
         this.director = director;
@@ -63,6 +68,26 @@ public class peliculas {
 
     public void setIdioma(String idioma) {
         this.idioma = idioma;
+    }
+
+
+    public void anadirPelicula(String file_peliculas){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            // Read existing JSON data from file
+            List<Object> existingData = mapper.readValue(new File(file_peliculas), new TypeReference<>() {});
+
+            // Add the new object to the existing collection
+            existingData.add(this);
+
+            // Write the updated collection back to the JSON file
+            mapper.writeValue(new File(file_peliculas), existingData);
+
+
+            System.out.println("Object added to JSON file successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
