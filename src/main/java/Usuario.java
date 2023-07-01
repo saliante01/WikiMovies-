@@ -4,11 +4,15 @@ public class Usuario{
     private String username;
     private String password;
 
+    private String tipo;
+
     private ArrayList<String> favoritos = new ArrayList<>();
 
+    public Usuario(){}
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
+
     }
 
     public String getUsername() {
@@ -38,6 +42,9 @@ public class Usuario{
     public String toString(){
         String datos = "[Usuario: "+this.getUsername()+", Contrasena: "+this.getPassword()+"]";
         return datos;
+    }
+    public String getTipo(){
+        return "usuario";
     }
 
 }

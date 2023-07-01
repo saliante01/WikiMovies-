@@ -1,30 +1,42 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
 
-        //se lee archivo
+        //se lee el archivo de usuarios y se convierte en la arraylist que vamos a usar
+        ArrayList<Usuario> listaUsuarios = escribirFileEnArrayListUsuarios("fileUsuarios");
+
+        //se lee el archivo de peliculas y se convierte en la arraylist que vamos a usar
+        ArrayList<Pelicula> listaPeliculas = escribirFileEnArrayListPeliculas("filePeliculas");
 
 
-        List<Usuario> listaUsuarios = new ArrayList<>();
-        List<Pelicula> listaPeliculas = new ArrayList<>();
 
+        //inicia el programa
         inicioSesion(listaUsuarios, listaPeliculas);
 
-        //se sobre escribe los archivos
+
+        //sobreescribe los datos para añadir a los usuarios previamente no registrados
+        reescribirDatosUsuarios(listaUsuarios);
+
+
+        //sobreescribe los datos de las peliculas (si no se añadió alguna pelicula tecnicamente queda igual)
+        reescribirDatosPeliculas(listaPeliculas);
+
+
 
     }
 
 
-
-    private static void inicioSesion(List<Usuario> listaUsuarios, List<Pelicula> listaPeliculas) {
+    private static void inicioSesion(ArrayList<Usuario> listaUsuarios, ArrayList<Pelicula> listaPeliculas) {
         Scanner teclado = new Scanner(System.in);
         System.out.println("-----------------------------------------------");
         System.out.println("LOGIN");
@@ -59,8 +71,7 @@ public class Main {
                 crearUsuario(listaUsuarios);
                 break;
             case "0":
-                System.exit(0);
-                break;
+                return;
             default:
                 System.out.println("OPCION NO VALIDA");
                 inicioSesion(listaUsuarios, listaPeliculas);
@@ -69,7 +80,7 @@ public class Main {
         inicioSesion(listaUsuarios, listaPeliculas);
     }
 
-    private static void crearUsuario(List<Usuario> listaUsuarios) {
+    private static void crearUsuario(ArrayList<Usuario> listaUsuarios) {
         Scanner teclado = new Scanner(System.in);
         System.out.println("Ingrese su nombre de usuario");
         String userName = teclado.next();
@@ -85,9 +96,10 @@ public class Main {
             listaUsuarios.add(nuevoUsuario);
             System.out.println("USUARIO REGISTRADO");
         }
+
     }
 
-    private static boolean revisarUsuario(String userName, List<Usuario> listaUsuarios) {
+    private static boolean revisarUsuario(String userName, ArrayList<Usuario> listaUsuarios) {
         for (Usuario user: listaUsuarios) {
             if (Objects.equals(userName, user.getUsername())){
                 return true;
@@ -96,7 +108,7 @@ public class Main {
         return false;
     }
 
-    public static boolean revisarUsuarioYContrasena(String username, String password, List<Usuario> listaUsuarios) {
+    public static boolean revisarUsuarioYContrasena(String username, String password, ArrayList<Usuario> listaUsuarios) {
         for (Usuario user: listaUsuarios) {
             if (Objects.equals(username, user.getUsername())&&Objects.equals(password, user.getPassword())){
                 return true;
@@ -106,35 +118,39 @@ public class Main {
     }
 
     private static void menuAnonimo(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("MENU");
-        System.out.println("Que desea realizar? Ingrese el numero correspondiente");
-        System.out.println("[1] Mostrar lista de Peliculas");
-        System.out.println("[2] Buscar una pelicula segun un parametro (genero, año, duracion, idioma)");
-        System.out.println("[3] Recomendacion aleatoria");
-        System.out.println("[0] Salir");
-        int respuesta = teclado.nextInt();
+        boolean salir = true;
+        do {
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("MENU");
+            System.out.println("Que desea realizar? Ingrese el numero correspondiente");
+            System.out.println("[1] Mostrar lista de Peliculas");
+            System.out.println("[2] Buscar una pelicula segun un parametro (genero, año, duracion, idioma)");
+            System.out.println("[3] Recomendacion aleatoria");
+            System.out.println("[0] Salir");
+            int respuesta = teclado.nextInt();
 
-        switch (respuesta){
-            case 1:
-                //mostrarPeliculas();
-                break;
-            case 2:
-                //busquedaPeliculas();
-                break;
-            case 3:
-                //recomendacionAleatoria();
-                break;
-            case 4:
-                break;
-            case 0: System.exit(0);
-                break;
-            default:
-                System.out.println("Ingrese una opcion valida");
-                menuAnonimo();
-                break;
-        }
-        menuAnonimo();
+            switch (respuesta){
+                case 1:
+                    //mostrarPeliculas();
+                    break;
+                case 2:
+                    //busquedaPeliculas();
+                    break;
+                case 3:
+                    //recomendacionAleatoria();
+                    break;
+                case 4:
+                    break;
+                case 0:
+                    salir = false;
+                    break;
+                default:
+                    System.out.println("Ingrese una opcion valida");
+                    menuAnonimo();
+                    break;
+            }
+            menuAnonimo();
+        }while (salir);
     }
 
     private static void menuUsuarios(String usuario){
@@ -144,8 +160,7 @@ public class Main {
         System.out.println("[1] Mostrar lista de Peliculas");
         System.out.println("[2] Buscar una pelicula segun un parametro (genero, año, duracion, idioma)");
         System.out.println("[3] Recomendacion aleatoria");
-        System.out.println("[4] Añadir pelicula");
-        System.out.println("[5] Ver peliculas Favoritas");
+        System.out.println("[4] Ver peliculas Favoritas");
         System.out.println("[0] Salir");
         int respuesta = teclado.nextInt();
 
@@ -176,37 +191,55 @@ public class Main {
     }
 
     private static void anadirPelicula() {
-
-
-
-
-
-        //Pelicula nuevaPelicula =new Pelicula();
-        //anadirObjeto(nuevaPelicula, "peliculas.json");
-
     }
-
-
-    private static void anadirUsuario(Usuario nuevoUsuario, String archivo) {
-        ObjectMapper mapper = new ObjectMapper();
+    private static void reescribirDatosUsuarios(ArrayList<Usuario> listaUsuarios) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            // Read existing JSON data from file
-            List<Usuario> existingData = mapper.readValue(new File(archivo), new TypeReference<>() {
-            });
-
-            // Add the new object to the existing collection
-            existingData.add(nuevoUsuario);
-
-            // Write the updated collection back to the JSON file
-            mapper.writeValue(new File(archivo), existingData);
-
-            System.out.println("Object added to JSON file successfully.");
+            FileWriter fileWriter = new FileWriter("filePeliculas");
+            objectMapper.writeValue(fileWriter, listaUsuarios);
+            fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void reescribirDatosPeliculas(ArrayList<Pelicula> listaPeliculas) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            FileWriter fileWriter = new FileWriter("filePeliculas");
+            objectMapper.writeValue(fileWriter, listaPeliculas);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
+    private static ArrayList<Pelicula> escribirFileEnArrayListPeliculas(String filename) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Pelicula> arrayList = new ArrayList<>();
+        try {
+            File file = new File(filename);
+            arrayList = objectMapper.readValue(file, new TypeReference<ArrayList<Pelicula>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arrayList;
+    }
+
+    private static ArrayList<Usuario> escribirFileEnArrayListUsuarios(String filename) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<Usuario> arrayList = new ArrayList<>();
+        try {
+            File file = new File(filename);
+            arrayList = objectMapper.readValue(file, new TypeReference<ArrayList<Usuario>>() {});
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arrayList;
     }
 }
+
 

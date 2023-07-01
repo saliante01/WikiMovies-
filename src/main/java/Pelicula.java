@@ -2,43 +2,41 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Pelicula {
     private String titulo;
-    private int year;
-    private ArrayList<String> genero = new ArrayList<>();
+    private String year;
+    private String[] genero;
     private String director;
-    private int duracion;
+    private String duracion;
     private String idioma;
 
-
-    public Pelicula(String titulo, int year, String director, int duracion, String idioma) {
+    public Pelicula(){}
+    public Pelicula(String titulo, String year, String[] genero, String director, String duracion, String idioma) {
         this.titulo = titulo;
         this.year = year;
         this.director = director;
         this.duracion = duracion;
         this.idioma = idioma;
+        this.genero = genero;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public ArrayList<String> getGenero() {
-        return genero;
-    }
+
 
     public String getDirector() {
         return director;
     }
 
-    public int getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
@@ -50,19 +48,19 @@ public class Pelicula {
         this.titulo = titulo;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
-    public void setGenero(ArrayList<String> genero) {
-        this.genero = genero;
+    public String[] getGenero() {
+        return genero;
     }
 
     public void setDirector(String director) {
         this.director = director;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 
