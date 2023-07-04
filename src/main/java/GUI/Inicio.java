@@ -1,5 +1,8 @@
 package GUI;
 
+import Modelo.Aplicacion;
+import Modelo.Usuario;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
@@ -9,9 +12,11 @@ public class Inicio extends Ventana{
     private JButton botonInvitado;
     private JButton crearUsuario;
     private JButton salir;
+    private Aplicacion aplicacion;
 
-    public Inicio() {
+    public Inicio(Aplicacion a) {
         super("WikiMovies", 500, 520);
+        this.aplicacion = a;
         generarElementosVentana();
     }
 
@@ -60,20 +65,20 @@ public class Inicio extends Ventana{
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.botonUsuario) {
-            VentanaUsuario ventanaUsuario= new VentanaUsuario();
+            VentanaUsuario ventanaUsuario= new VentanaUsuario(aplicacion);
             this.dispose();
         }
         if(e.getSource() == this.botonInvitado){
-            VentanaInvitado ventanaInvitado= new VentanaInvitado();
+            VentanaInvitado ventanaInvitado= new VentanaInvitado(aplicacion);
             this.dispose();
         }
         if(e.getSource() == this.crearUsuario){
-            VentanaCrearUsuario ventanaCrearUsuario= new VentanaCrearUsuario();
+            VentanaCrearUsuario ventanaCrearUsuario= new VentanaCrearUsuario(aplicacion);
             this.dispose();
         }
-
-
-
+        if(e.getSource() == this.salir){
+            this.dispose();
+        }
 
     }
 

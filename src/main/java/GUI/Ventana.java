@@ -24,6 +24,8 @@ public class Ventana extends JFrame implements ActionListener{
         this.fuenteTitulo = new Font("Calibri", 3, 20);
         this.fuenteTexto = new Font("Calibri", 1, 14);
     }
+
+
     protected void generarJLabelEncabezado(JLabel label, String texto, int posicionX, int posicionY, int largoX, int
             largoY){
         label= new JLabel(texto);
