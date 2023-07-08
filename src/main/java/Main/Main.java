@@ -1,3 +1,7 @@
+package Main;
+
+import Clases.Pelicula;
+import Clases.Usuario;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,9 +45,9 @@ public class Main {
         System.out.println("-----------------------------------------------");
         System.out.println("LOGIN");
         System.out.println("Como desea ingresar?");
-        System.out.println("[1] Usuario");
+        System.out.println("[1] Clases.Usuario");
         System.out.println("[2] Invitado");
-        System.out.println("[3] Crear Nuevo Usuario");
+        System.out.println("[3] Crear Nuevo Clases.Usuario");
         System.out.println("[0] Salir");
 
         String respuesta = teclado.next();

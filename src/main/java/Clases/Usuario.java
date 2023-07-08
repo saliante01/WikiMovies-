@@ -1,3 +1,5 @@
+package Clases;
+
 import java.util.ArrayList;
 
 public class Usuario{
@@ -40,7 +42,7 @@ public class Usuario{
     }
 
     public String toString(){
-        String datos = "[Usuario: "+this.getUsername()+", Contrasena: "+this.getPassword()+"]";
+        String datos = "[Clases.Usuario: "+this.getUsername()+", Contrasena: "+this.getPassword()+"]";
         return datos;
     }
     public String getTipo(){
