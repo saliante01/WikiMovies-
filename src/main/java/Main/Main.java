@@ -17,11 +17,11 @@ public class Main {
     public static void main(String[] args) throws JsonProcessingException {
 
         //se lee el archivo de usuarios y se convierte en la arraylist que vamos a usar
+
         ArrayList<Usuario> listaUsuarios = escribirFileEnArrayListUsuarios("fileUsuarios");
 
         //se lee el archivo de peliculas y se convierte en la arraylist que vamos a usar
         ArrayList<Pelicula> listaPeliculas = escribirFileEnArrayListPeliculas("filePeliculas");
-
 
 
         //inicia el programa
