@@ -23,6 +23,8 @@ public class Main {
         //se lee el archivo de peliculas y se convierte en la arraylist que vamos a usar
         ArrayList<Pelicula> listaPeliculas = escribirFileEnArrayListPeliculas("filePeliculas");
 
+        
+
 
         //inicia el programa
         inicioSesion(listaUsuarios, listaPeliculas);
