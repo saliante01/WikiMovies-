@@ -23,10 +23,11 @@ public class Aplicacion {
 
     public Aplicacion(ArrayList<Pelicula> peliculas, ArrayList<Usuario> usuarios) {
         admins = new ArrayList<>();
-        this.peliculas = peliculas;
+       this.peliculas = peliculas;
         this.usuarios = usuarios;
 
     }
+
 
     public void agregarUsuario(String nombre, String contrasena){
         Usuario u = new Usuario(nombre,contrasena);
