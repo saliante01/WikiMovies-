@@ -180,8 +180,8 @@ public class Main {
             case 5:
                 //peliculasFavoritas(usuario);
                 break;
-            case 0: System.exit(0);
-                break;
+            case 0:
+                return;
             default:
                 System.out.println("Ingrese una opcion valida");
                 menuUsuarios(usuario);
@@ -191,12 +191,13 @@ public class Main {
     }
 
     private static void anadirPelicula() {
+
     }
     private static void reescribirDatosUsuarios(ArrayList<Usuario> listaUsuarios) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            FileWriter fileWriter = new FileWriter("filePeliculas");
+            FileWriter fileWriter = new FileWriter("fileUsuarios");
             objectMapper.writeValue(fileWriter, listaUsuarios);
             fileWriter.close();
         } catch (IOException e) {
@@ -215,7 +216,6 @@ public class Main {
             e.printStackTrace();
         }
     }
-
 
     private static ArrayList<Pelicula> escribirFileEnArrayListPeliculas(String filename) {
         ObjectMapper objectMapper = new ObjectMapper();
