@@ -2,9 +2,14 @@ package GUI;
 
 import Modelo.Aplicacion;
 import Modelo.Usuario;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Inicio extends Ventana{
     private JLabel titulo;
@@ -77,9 +82,26 @@ public class Inicio extends Ventana{
             this.dispose();
         }
         if(e.getSource() == this.salir){
+
+            try {
+                reescribirDatosUsuarios(aplicacion.getUsuarios());
+            } catch (JsonProcessingException ex) {
+                ex.printStackTrace();
+            }
             this.dispose();
         }
 
+    }
+    private static void reescribirDatosUsuarios(ArrayList<Usuario> listaUsuarios) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            FileWriter fileWriter = new FileWriter("fileUsuarios");
+            objectMapper.writeValue(fileWriter, listaUsuarios);
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

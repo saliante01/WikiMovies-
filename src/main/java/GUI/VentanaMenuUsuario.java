@@ -121,7 +121,7 @@ public class VentanaMenuUsuario extends Ventana{
             }
         }
         if (recomendadas.size() == 0){
-            JOptionPane.showMessageDialog(this,"Recomendamos ver inception otra vez :D");
+            JOptionPane.showMessageDialog(this,"Recomendamos ver inception :D");
 
         }else {
             imprimirPeliculas(recomendadas);

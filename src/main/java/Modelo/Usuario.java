@@ -7,12 +7,16 @@ public class Usuario {
     private String password;
 
     private ArrayList<Pelicula> favoritos;
+    public Usuario(){
 
+
+    }
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
         favoritos = new ArrayList<>();
     }
+
 
     public String getUsername() {
         return username;
