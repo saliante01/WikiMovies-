@@ -16,7 +16,15 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ *
+ * Clase principal que ejecuta el codigo
+ * @author Sebastian
+ *
+ */
+
 public class Main {
+
     public static void main(String[] args) throws JsonProcessingException {
 
         ArrayList<Usuario> listaUsuarios = escribirFileEnArrayListUsuarios("fileUsuarios");
@@ -50,6 +58,12 @@ public class Main {
         }
     }
 
+    /**
+     * Este metodo lee el archivo y devuelve el contenido en un arraylist que contienes objetos de la clase Pelicula
+     * @param filename nombre del archivo donde esta la informacion
+     * @return Arraylist de Pelicula
+     * @author Luis
+     */
     private static ArrayList<Pelicula> escribirFileEnArrayListPeliculas(String filename) {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Pelicula> arrayList = new ArrayList<>();
@@ -62,6 +76,12 @@ public class Main {
         return arrayList;
     }
 
+    /**
+     * Este metodo lee el archivo y devuelve el contenido en un arraylist que contienes objetos de la clase Usuario
+     * @param filename nombre del archivo donde esta la informacion
+     * @return Arraylist de Usuario
+     * @author Luis
+     */
     private static ArrayList<Usuario> escribirFileEnArrayListUsuarios(String filename) {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<Usuario> arrayList = new ArrayList<>();

@@ -6,6 +6,11 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * Clase que contiene los metodos necesarios para crear una tabla
+ * con la informacion de un arraylist
+ * @author Luis
+ */
 public class VentanaTabla extends JFrame {
     private String[][] datos;
     private String[] nombreColumnas;

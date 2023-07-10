@@ -8,6 +8,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase que muestra la ventana de buscar peliculas de la aplicacion
+ * @author Luis
+ */
 public class VentanaBuscarPelicula extends Ventana {
     private Aplicacion aplicacion;
     private JLabel titulo;
@@ -27,6 +31,7 @@ public class VentanaBuscarPelicula extends Ventana {
         generarElementosVentana();
 
     }
+
     public VentanaBuscarPelicula(Aplicacion aplicacion,int aux) {
         super("WikiMovies", 500, 520);
         this.aplicacion = aplicacion;
@@ -34,6 +39,12 @@ public class VentanaBuscarPelicula extends Ventana {
         generarElementosVentana();
 
     }
+
+    /**
+     * Metodo que llama a todas las funciones que generan los JLabel, los
+     * JButton, el JComboBox y los JTextFild
+     * @author Luis
+     */
 
 
     private void generarElementosVentana() {
@@ -82,6 +93,12 @@ public class VentanaBuscarPelicula extends Ventana {
         super.generarJLabelEncabezado(this.titulo, textoBienvenida, 20, 30, 500, 30);
     }
 
+    /**
+     * Metodo que activa las funciones de cada boton perteneciente a la ventana de buscar pelicula
+     * @param e the event to be processed
+     * @author Luis
+     */
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.buscar) {
             String var = (String) this.variables.getSelectedItem();
@@ -107,6 +124,15 @@ public class VentanaBuscarPelicula extends Ventana {
     }
 
 
+    /**
+     * Metodo que busca que una pelicula segun un parametro de esta
+     *
+     * @param var define por que parametro de la pelicula se quiere buscar
+     * @param text nombre del parametro previamente seleccionado
+     * @return bolean que dice si se encontro la pelicula o no
+     * @author Jose
+     *
+     */
 
     private boolean busqueda(String var, String text) {
         ArrayList<Pelicula> peliculasEncontradas = new ArrayList<>();
@@ -166,6 +192,11 @@ public class VentanaBuscarPelicula extends Ventana {
     }
 
 
+    /**
+     * Metodo que toma el arraylist de peliculas y lo transforma en un arreglo para
+     * crear la tabla donde se puede ver la informacion de las peliculas
+     * @author Luis
+     */
 
     private void imprimirPeliculas(ArrayList<Pelicula> pelis){
 

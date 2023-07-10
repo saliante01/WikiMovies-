@@ -6,6 +6,10 @@ import Modelo.Usuario;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase que muestra la ventana de usuario de la aplicacion
+ * @author Sebastian
+ */
 public class VentanaUsuario extends Ventana {
     private JLabel tituloSesion, usuarios, contrasenas;
     private JTextField campoUsuarios, campoContrasenas;
@@ -18,6 +22,12 @@ public class VentanaUsuario extends Ventana {
         generarElementosVentana();
 
     }
+
+    /**
+     * Metodo que llama a todas las funciones que generan los JLabel, los
+     * JButton y JTextField
+     * @author Luis
+     */
 
     private void generarElementosVentana() {
         generarTituloSesion();
@@ -61,6 +71,12 @@ public class VentanaUsuario extends Ventana {
         super.generarJLabelEncabezado(this.tituloSesion, textoBienvenida, 20, 30, 500, 30);
     }
 
+    /**
+     * Metodo que activa las funciones de cada boton perteneciente a la ventana de usuario
+     * @param e the event to be processed
+     * @author Sebastian
+     */
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.ok) {
 
@@ -83,6 +99,14 @@ public class VentanaUsuario extends Ventana {
 
     }
 
+    /**
+     * Metodo que busca al usuario de la lista de usuarios de la aplicacion segun
+     * su nombre y contraseña
+     * @param nombreUsuario nombre de usuario del usuario
+     * @param contrasena contraseña del usuario
+     * @return el usuario que tenga las mismas credenciales
+     * @author Sebastian 
+     */
     private Usuario usuarioSeleccionado(String nombreUsuario, String  contrasena) {
         for (Usuario i : aplicacion.getUsuarios()) {
             if (i.getUsername().equals(nombreUsuario) && i.getPassword().equals(contrasena)) {
@@ -92,7 +116,13 @@ public class VentanaUsuario extends Ventana {
         return null;
     }
 
-
+    /**
+     * Metodo que verifica si las credenciales registradas en los JTextField son validas
+     * @param nombreUsuario nombre ingresado en el JTextField
+     * @param contrasena contraseña ingresada en el JTextField
+     * @return boolean que verifica si el nombre y cotraseña son iguales
+     * @author Jose
+     */
 
     public boolean validarCredenciales(String nombreUsuario, String contrasena) {
         for (Usuario i : aplicacion.getUsuarios()) {

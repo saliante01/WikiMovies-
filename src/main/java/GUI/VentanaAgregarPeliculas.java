@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase que muestra la ventana de agregar peliculas de la aplicacion
+ * @author Sebastian
+ */
+
 public class VentanaAgregarPeliculas extends Ventana{
     private Aplicacion aplicacion;
     private JLabel peliculaaa;
@@ -21,6 +26,11 @@ public class VentanaAgregarPeliculas extends Ventana{
         generarElementosVentana();
     }
 
+    /**
+     * Metodo que llama a todas las funciones que generan los JLabel, los
+     * JButton y el JComboBox
+     * @author Sebastian
+     */
     private void generarElementosVentana() {
         imprimirPeliculas();
         generarComboPelicula();
@@ -54,6 +64,12 @@ public class VentanaAgregarPeliculas extends Ventana{
         this.peliculas.addActionListener(this);
 
     }
+
+    /**
+     * Metodo que toma el arraylist de peliculas y lo transforma en un arreglo para
+     * crear la tabla donde se puede ver la informacion de las peliculas
+     * @author Luis
+     */
     private void imprimirPeliculas(){
         ArrayList<Pelicula> estudiantes= new ArrayList<>();
 
@@ -74,6 +90,12 @@ public class VentanaAgregarPeliculas extends Ventana{
 
     }
 
+    /**
+     * Metodo que activa las funciones de cada boton perteneciente a la ventana de agregar pelicula
+     * @param e the event to be processed
+     * @author Sebastian
+     */
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.agregar) {
             Pelicula p = (Pelicula) this.peliculas.getSelectedItem();
@@ -93,6 +115,14 @@ public class VentanaAgregarPeliculas extends Ventana{
         }
 
     }
+
+    /**
+     * Metodo que verifica que una pelicula ya existe en un arraylist
+     * @param p pelicula que se quiere verificar la existencia
+     * @param peliculas arraylist donde se verifica la existencia de la pelicula
+     * @return bolean que determina si existe la pelicula o no
+     * @author Jose
+     */
 
     public boolean verificaExistencia(Pelicula p, ArrayList<Pelicula> peliculas) {
         boolean aux = false;

@@ -6,6 +6,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase padre que contiene todos los metodos para crear la interfaz grafica
+ * @author Jose
+ */
 public class Ventana extends JFrame implements ActionListener{
     private final Font fuenteTitulo;
     private final Font fuenteTexto;

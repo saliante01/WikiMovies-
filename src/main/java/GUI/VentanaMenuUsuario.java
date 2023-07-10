@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Clase que muestra la ventana de menu usuario de la aplicacion
+ * @author Jose
+ */
 public class VentanaMenuUsuario extends Ventana{
     private Aplicacion aplicacion;
     private Usuario usuario;
@@ -24,6 +27,11 @@ public class VentanaMenuUsuario extends Ventana{
 
     }
 
+    /**
+     * Metodo que llama a todas las funciones que generan los JLabel y los
+     * JButton
+     * @author Jose
+     */
 
     private void generarElementosVentana() {
         generarMenuUsuario();
@@ -75,6 +83,12 @@ public class VentanaMenuUsuario extends Ventana{
         super.generarJLabelEncabezado(this.menuUsuarios, textoBienvenida, 20, 30, 500, 30);
     }
 
+    /**
+     * Metodo que activa las funciones de cada boton perteneciente a la ventana de menu usuario
+     * @param e the event to be processed
+     * @author Jose
+     */
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.agregarPeliculas) {
             VentanaAgregarPeliculas ventanaAgregarPeliculas = new VentanaAgregarPeliculas(aplicacion,usuario);
@@ -101,6 +115,11 @@ public class VentanaMenuUsuario extends Ventana{
 
     }
 
+    /**
+     * Metodo que genera una lista de las peliculas recomendadas.
+     * Las peliculas recomendadas se basan en el director y genero favorito
+     * @author Jose
+     */
     private void peliculasRecomendadas() {
         ArrayList<String> directores = new ArrayList<>();
         for (Pelicula i : usuario.getFavoritos()){
@@ -128,6 +147,13 @@ public class VentanaMenuUsuario extends Ventana{
         }
     }
 
+    /**
+     * Comprueba si la pelicula que la aplicacion quiere recomendar
+     * ya se encuentra en la lista de peliculas favoritas
+     * @param peli pelicula que se quiere comprobar
+     * @return boolean que dicta si la pelicula se encuentra o no el la lista de favoritos
+     * @author Jose
+     */
     private boolean comprobar(Pelicula peli) {
         int aux = 0;
         for (Pelicula i : usuario.getFavoritos()){
@@ -142,6 +168,14 @@ public class VentanaMenuUsuario extends Ventana{
         }
     }
 
+    /**
+     * Metodo que encuentra el elemento mas repetido en un arraylist,
+     * se usa para saber el genero y director favorito del usuario
+     * @param palabras arraylist de String que contiene los nombre de los directores o
+     * de los generos
+     * @return retorna el elemento mas repetido
+     * @author Jose
+     */
     public static String encontrarElementoMasRepetido(ArrayList<String> palabras) {
         HashMap<String, Integer> contador = new HashMap<>();
 
@@ -172,6 +206,11 @@ public class VentanaMenuUsuario extends Ventana{
         return elementoMasRepetido;
     }
 
+    /**
+     * Metodo que toma el arraylist de peliculas y lo transforma en un arreglo para
+     * crear la tabla donde se puede ver la informacion de las peliculas
+     * @author Luis
+     */
     private void imprimirPeliculas(ArrayList<Pelicula> peliculas){
 
         String[][] datosPeliculas;

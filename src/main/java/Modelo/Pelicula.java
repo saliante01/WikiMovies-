@@ -7,6 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Clase que crea y obtiene la informacion de las peliculas
+ * @author Jose
+ */
 public class Pelicula {
     private String titulo;
     private int year;

@@ -2,6 +2,10 @@ package Modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que crea y obtiene la informacion de los usuarios 
+ * @author Sebastian
+ */
 public class Usuario {
     private String username;
     private String password;

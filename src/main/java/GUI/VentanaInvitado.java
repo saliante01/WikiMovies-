@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase que muestra la ventana de invitado de la aplicacion
+ * @author Sebastian
+ */
 public class VentanaInvitado extends Ventana {
     private Aplicacion aplicacion;
     private JButton buscarPelicula, recomendacion, ver,regresar;
@@ -18,6 +22,12 @@ public class VentanaInvitado extends Ventana {
         generarElementosVentana();
 
     }
+
+    /**
+     * Metodo que llama a todas las funciones que generan los JLabel y los
+     * JButton
+     * @author Sebastian
+     */
 
     private void generarElementosVentana() {
         generarMenuUsuario();
@@ -62,6 +72,12 @@ public class VentanaInvitado extends Ventana {
         super.generarJLabelEncabezado(this.menuUsuarios, textoBienvenida, 20, 30, 500, 30);
     }
 
+    /**
+     * Metodo que activa las funciones de cada boton perteneciente a la ventana de invitado
+     * @param e the event to be processed
+     * @author Sebastian
+     */
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.ver) {
@@ -87,12 +103,24 @@ public class VentanaInvitado extends Ventana {
 
     }
 
+    /**
+     * Metodo que genera un numero aleatorio que funciona como indice para
+     * el arraylist de peliculas
+     * @param cantidad cantidad de elementos del array
+     * @return numero aleatorio generado
+     * @author Jose
+     */
+
     public int generarNumeroAleatorio(int cantidad) {
         int numAleatorio = (int)(Math.random()*(cantidad+1));
         return numAleatorio;
     }
 
-
+    /**
+     * Metodo que toma el arraylist de peliculas y lo transforma en un arreglo para
+     * crear la tabla donde se puede ver la informacion de las peliculas
+     * @author Luis
+     */
     private void imprimirPeliculas(ArrayList<Pelicula> peliculas){
 
         String[][] datosPeliculas;

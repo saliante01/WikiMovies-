@@ -6,6 +6,10 @@ import Modelo.Usuario;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase que muestra la ventana de crear usuarios de la aplicacion
+ * @author Jose
+ */
 public class VentanaCrearUsuario extends Ventana{
     private JLabel tituloLogin, usuarios, contrasenas;
     private JTextField campoUsuarios, campoContrasenas;
@@ -20,6 +24,12 @@ public class VentanaCrearUsuario extends Ventana{
         generarElementosVentana();
     }
 
+
+    /**
+     * Metodo que llama a todas las funciones que generan los JLabel, los
+     * JButton y los JTextFild
+     * @author Jose
+     */
 
 
     private void generarElementosVentana() {
@@ -64,6 +74,11 @@ public class VentanaCrearUsuario extends Ventana{
         String textoBienvenida = "Registro de usuario";
         super.generarJLabelEncabezado(this.tituloLogin, textoBienvenida, 20, 30, 500, 30);
     }
+    /**
+     * Metodo que activa las funciones de cada boton perteneciente a la ventana de crear usuario
+     * @param e the event to be processed
+     * @author Jose
+     */
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.ok) {
